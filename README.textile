@@ -1,32 +1,5 @@
 h1. GitHub Google Gadget
 
-An iGoogle gadget for displaying GitHub repositories.
+I'm taking Aupujo's github-google-gadget and making it show the most recently pushed repos.
 
-"Add to iGoogle":http://www.google.co.nz/ig/adde?hl=en&moduleurl=http://labs.metanation.com/github-google-gadget/legacy.xml&source=imag
-
-!http://labs.metanation.com/github-google-gadget/screenshot.gif(Screenshot)!
-
-h2. Legacy API Version (Legacy Branch)
-
-This version is the most compatible, and the one currently supported by the iGoogle homepage.
-
-You can test it out by adding:
-
-"http://labs.metanation.com/github-google-gadget/legacy.xml":http://labs.metanation.com/github-google-gadget/legacy.xml
-
-Instant-add:
-
-"http://www.google.co.nz/ig/adde?hl=en&moduleurl=http://labs.metanation.com/github-google-gadget/legacy.xml&source=imag":http://www.google.co.nz/ig/adde?hl=en&moduleurl=http://labs.metanation.com/github-google-gadget/legacy.xml&source=imag
-
-
-h2. gadgets.* API Version (Master Branch)
-
-To use the gadget, you need to be using the "iGoogle Developer's Sandbox":http://www.google.com/ig/sandbox.
-
-You can test out the gadget by adding:
-
-"http://labs.metanation.com/github-google-gadget/gadget.xml":http://labs.metanation.com/github-google-gadget/gadget.xml
-
-You should be able to use this link to instant-add it:
-
-"http://www.google.co.nz/ig/adde?hl=en&moduleurl=http://labs.metanation.com/github-google-gadget/gadget.xml&source=imag":http://www.google.co.nz/ig/adde?hl=en&moduleurl=http://labs.metanation.com/github-google-gadget/gadget.xml&source=imag
+Right now I'm testing it out using the Google Gadget Editor on iGoogle.
