@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--
+_.map, _.pluck, _.sortBy functions taken from:
+Underscore.js 1.1.3
+(c) 2010 Jeremy Ashkenas, DocumentCloud Inc.
+Underscore is freely distributable under the MIT license.
+Portions of Underscore are inspired or borrowed from Prototype,
+Oliver Steele's Functional, and John Resig's Micro-Templating.
+For all details and documentation:
+http://documentcloud.github.com/underscore
+-->
 <Module>
   <ModulePrefs directory_title="GitHub Repositories"
     title="__UP_username__`s GitHub Repositories"
@@ -81,12 +91,39 @@
         }
         
         function response(obj) {
+          var _ = {};
+
+          _.map = function(obj, iterator, context) {
+            if (nativeMap && obj.map === nativeMap) return obj.map(iterator, context);
+            var results = [];
+            each(obj, function(value, index, list) {
+              results[results.length] = iterator.call(context, value, index, list);
+            });
+            return results;
+          };
+
+          _.pluck = function(obj, key) {
+            return _.map(obj, function(value){ return value[key]; });
+          };
+
+          _.sortBy = function(obj, iterator, context) {
+            return _pluck(_map(obj, function(value, index, list) {
+              return {
+                value : value,
+                criteria : iterator.call(context, value, index, list)
+              };
+            }).sort(function(left, right) {
+              var a = left.criteria, b = right.criteria;
+              return a < b ? -1 : a > b ? 1 : 0;
+            }), 'value');
+          };
+          
           var jsondata = obj.data;
  
           if(jsondata['user'] && jsondata['user']['repositories']) {
             var prefs = new gadgets.Prefs();
             var limit = parseInt(prefs.getString('display_limit'));
-            var repos = jsondata['user']['repositories'];
+            var repos = _.sortBy(jsondata['user']['repositories'], function(repo) { return repo.pushed_at; });
         
             var html = "";
             
