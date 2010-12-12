@@ -93,9 +93,9 @@ http://documentcloud.github.com/underscore
         function response(obj) {
           var _ = {};
 
-          _.each = = function(obj, iterator, context) {
+          _.each = function(obj, iterator, context) {
             var value;
-            if (nativeForEach && obj.forEach === nativeForEach) {
+            if (Array.prototype.forEach && obj.forEach === Array.prototype.forEach) {
               obj.forEach(iterator, context);
             } else if (_.isNumber(obj.length)) {
               for (var i = 0, l = obj.length; i < l; i++) {
@@ -111,7 +111,7 @@ http://documentcloud.github.com/underscore
           };
           
           _.map = function(obj, iterator, context) {
-            if (nativeMap && obj.map === nativeMap) return obj.map(iterator, context);
+            if (Array.prototype.map && obj.map === Array.prototype.map) return obj.map(iterator, context);
             var results = [];
             _.each(obj, function(value, index, list) {
               results[results.length] = iterator.call(context, value, index, list);
@@ -141,6 +141,7 @@ http://documentcloud.github.com/underscore
             var prefs = new gadgets.Prefs();
             var limit = parseInt(prefs.getString('display_limit'));
             var repos = _.sortBy(jsondata['user']['repositories'], function(repo) { return repo.pushed_at; });
+            repos.reverse();
         
             var html = "";
             
