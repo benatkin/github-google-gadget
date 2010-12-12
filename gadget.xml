@@ -107,7 +107,7 @@ http://documentcloud.github.com/underscore
           };
 
           _.sortBy = function(obj, iterator, context) {
-            return _pluck(_map(obj, function(value, index, list) {
+            return _pluck(_.map(obj, function(value, index, list) {
               return {
                 value : value,
                 criteria : iterator.call(context, value, index, list)
